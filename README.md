@@ -5,6 +5,8 @@
 [![node](https://img.shields.io/badge/node%40lts-v16-%2343853d)](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md#16.14.0)
 [![webpack](https://img.shields.io/badge/webpack-v5-%231a6bac)](https://github.com/webpack/webpack/releases/tag/v5.70.0)
 [![react](https://img.shields.io/badge/react-v17-%231a6bac)](https://github.com/facebook/react/releases/tag/v17.0.2)
+[![typescript](https://img.shields.io/badge/typescript-v4.6.2-%231a6bac)](https://reactrouter.com/docs/en/v6)
+[![react-router-dom](https://img.shields.io/badge/react--router--dom-v6-%231a6bac)](https://reactrouter.com/docs/en/v6)
 
 支持
 
@@ -12,8 +14,9 @@
 - Code splitting
 - Bundle Analysis
 - ESlint/Pretter
-- Typescript/TSX
+- Typescript/tsx
 - SCSS/Stylus/Less
+- Commitlint/Husky
 
 ## 目录结构
 
@@ -21,14 +24,14 @@
 |-- .vscode                         //vscod配置文件夹
 |   `-- settings.json
 |-- config                          //webpack配置文件夹
-|   |-- webpack.prod.js
-|   |-- webpack.dev.js
-|   `-- webpack.common.js
-|-- public                          //公共静态文件
+|   |-- webpack.prod.js             //生产配置
+|   |-- webpack.dev.js              //开发配置
+|   `-- webpack.common.js           //公共配置
+|-- public                          //静态文件
 |   |-- index.html
 |   `-- favicon.ico
 |-- src-----项目入口
-|   |-- components                  //组件
+|   |-- components                  //公共组件
 |   |   `-- header
 |   |       |-- index.tsx
 |   |       `-- index.scss
@@ -36,20 +39,18 @@
 |   |   `-- index.ts
 |   |-- api                         //存放请求api
 |   |   `-- home.ts
-|   |-- utils                       //封装工具文件夹
+|   |-- utils                       //工具库文件夹
 |   |   `-- request.ts
-|   |-- style                       //样式文件
-|   |   |-- stylus                  //stylus文件夹
-|   |   |   |-- mixins              //全局mxins文件
-|   |   |   |   `-- index.styl
-|   |   |   `-- index.styl
+|   |-- style                       //存放mixin公共样式文件夹
+|   |   |-- stylus
+|   |   |   `-- mixins.styl          //全局mxins文件
 |   |   |-- scss
-|   |   |   `-- app.scss
+|   |   |   `-- mixins.scss
 |   |   `-- less
-|   |       `-- index.less
+|   |       `-- mixins.less
 |   |-- store                       //全局状态
 |   |   `-- index.ts
-|   |-- router                      //路由相关
+|   |-- router                      //路由配置
 |   |   `-- index.ts
 |   |-- pages                       //页面
 |   |   |-- home
@@ -60,7 +61,8 @@
 |   |       `-- index.styl
 |   |-- index.tsx
 |   |-- env.d.ts                    //全局声明文件
-|   `-- App.tsx
+|   |-- App.css                     //App样式文件
+|   `-- App.tsx                     //App组件
 |-- postcss.config.js               //postcss配置文件
 |-- .prettierrc                     //prettier配置文件
 |-- .prettierignore                 //prettier排除文件

@@ -39,7 +39,12 @@ module.exports = {
           'postcss-loader',
           {
             loader: 'less-loader',
-            options: { lessOptions: { javascriptEnabled: true } },
+            options: {
+              additionalData: `@import "${path.resolve(__dirname, '../src/style/less/mixins.less"')};`,
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
           },
         ],
       },
@@ -52,7 +57,17 @@ module.exports = {
             loader: 'css-loader',
           },
           'postcss-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              //导入全局mixins
+              additionalData: '@import "src/style/scss/mixins.scss";',
+              sassOptions: {
+                // 禁止解析 utf-8 以外的文件
+                charse: false,
+              },
+            },
+          },
         ],
       },
       // .styl 解析
@@ -65,9 +80,10 @@ module.exports = {
           {
             loader: 'stylus-loader',
             options: {
+              // additionalData: '@import "src/style/stylus/mixins.scss";',
               stylusOptions: {
                 // 引入全局mixin
-                import: [path.resolve(__dirname, '../src/style/stylus/mixins/index.styl')],
+                import: [path.resolve(__dirname, '../src/style/stylus/mixins.styl')],
               },
             },
           },
@@ -137,7 +153,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'jsx', 'css', '.styl', '.scss', 'less', '.json'], // 后缀名自动补全
+    extensions: ['.ts', '.tsx', '.js', 'jsx', 'css', '.styl', '.scss', '.less', '.json'], // 后缀名自动补全
     alias: {
       '@': path.resolve(__dirname, '../src'), // 设置别名
     },

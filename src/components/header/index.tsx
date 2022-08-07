@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './index.scss';
+import './header.less';
 class Header extends Component {
   componentDidMount() {}
   componentWillUnmount() {}
   render() {
-    return <header>This is Typescript React Project template</header>;
+    return <header>webpack5-react17-typescript</header>;
   }
 }
 
