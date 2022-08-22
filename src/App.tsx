@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from './components/header';
-import Home from '@/pages/home';
-import About from '@/pages/about';
+import RouterIndex from '@/router';
 import './App.css';
-import { BrowserRouter as Router, HashRouter, Route, Link, NavLink, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, HashRouter, Route, Link, Outlet, NavLink, useLocation } from 'react-router-dom';
 
 export default function App() {
   let local = useLocation();
@@ -11,19 +10,14 @@ export default function App() {
     <div className="app">
       <Header />
       <nav>
-        <NavLink to="/home" style={{ marginRight: '28px' }} activeClassName="active">
+        <NavLink to="/home" style={{ marginRight: '28px' }} className={({ isActive }) => (isActive ? 'active' : '')}>
           Home
         </NavLink>
-        <NavLink to="/about" activeClassName="active">
+        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>
           About
         </NavLink>
       </nav>
-
-      <div className="curtain">
-        {local.pathname === '/' && <div className="app-content">This is Typescript React Project template</div>}
-        <Route path="/home" component={Home} />
-        <Route path="/about" component={About} />
-      </div>
+      <Outlet />
     </div>
   );
 }
